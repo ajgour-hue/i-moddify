@@ -61,16 +61,48 @@ const MoodSongs = () => {
                 style={{ '--mood-color': meta?.color }}
                 onClick={() => setSong(s)}
               >
-                <div className="song-poster-wrap">
-                  <img src={s.posterUrl} alt={s.title} className="song-poster" />
-                  <div className="song-overlay">
-                    <i className={song?._id === s._id ? 'ri-pause-fill' : 'ri-play-fill'} />
-                  </div>
-                  <span className="playing-dot" />
-                  <div className="playing-bars">
-                    <span /><span /><span /><span />
-                  </div>
-                </div>
+              
+              <div className="song-poster-wrap">
+  {s.posterUrl ? (
+    <img
+      src={s.posterUrl}
+      alt={s.title}
+      className="song-poster"
+      onError={(e) => {
+        e.target.style.display = "none";
+        e.target.parentElement.querySelector(".poster-placeholder").style.display =
+          "flex";
+      }}
+    />
+  ) : null}
+
+  <div
+    className="poster-placeholder"
+    style={{ display: s.posterUrl ? "none" : "flex" }}
+  >
+    <i className="ri-music-2-fill"></i>
+  </div>
+
+  <div className="song-overlay">
+    <i
+      className={
+        song?._id === s._id
+          ? "ri-pause-fill"
+          : "ri-play-fill"
+      }
+    />
+  </div>
+
+  <span className="playing-dot" />
+
+  <div className="playing-bars">
+    <span />
+    <span />
+    <span />
+    <span />
+  </div>
+</div>
+
                 <div className="song-info">
                   <p className="song-title">{s.title}</p>
                   <span className={`song-mood mood-${s.mood}`}>

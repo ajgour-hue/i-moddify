@@ -9,6 +9,7 @@ const AVAILABLE_MOODS = [
     { id: 'neutral', label: 'Neutral', icon: 'ri-emotion-line', color: 'var(--mood-neutral)' },
 ];
 
+
 const MoodSelector = ({ onMoodSelect }) => {
     const { currentMood } = useSong();
 

@@ -1,22 +1,23 @@
-import React, { useEffect } from 'react'
-import { useSong } from '../hooks/useSong'
-import { PanelSkeleton } from '../../shared/components/Skeleton'
-import 'remixicon/fonts/remixicon.css'
-import '../style/songs.scss'
+import React, { useEffect } from 'react';
+import { useSong } from '../hooks/useSong';
+import { PanelSkeleton } from '../../shared/components/Skeleton';
+import 'remixicon/fonts/remixicon.css';
+import '../style/songs.scss';
 
 const AllSongs = () => {
-  const { allSongs, handleGetAllSongs, loading, song, setSong } = useSong()
+  const { allSongs, handleGetAllSongs, loading, song, setSong } = useSong();
 
   useEffect(() => {
-    handleGetAllSongs()
-  }, [])
-
- 
+    handleGetAllSongs();
+  }, []);
 
   return (
     <div className="songs-panel">
       <div className="panel-header">
-        <h2>All <span>Songs</span></h2>
+        <h2>
+          All <span>Songs</span>
+        </h2>
+
         {allSongs?.length > 0 && (
           <span className="header-count">{allSongs.length} tracks</span>
         )}
@@ -24,7 +25,7 @@ const AllSongs = () => {
 
       {loading && !allSongs?.length ? (
         <div className="panel-body">
-            <PanelSkeleton count={7} />
+          <PanelSkeleton count={7} />
         </div>
       ) : !allSongs?.length ? (
         <div className="panel-empty">
@@ -41,21 +42,48 @@ const AllSongs = () => {
                 onClick={() => setSong(s)}
               >
                 <div className="song-poster-wrap">
-                  <img
-                    src={s.posterUrl}
-                    alt={s.title}
-                    className="song-poster"
-                  />
+                {s.posterUrl ? (
+  <img
+    src={s.posterUrl}
+    alt={s.title}
+    className="song-poster"
+    onError={(e) => {
+      e.target.style.display = "none";
+      e.target.nextElementSibling.style.display = "flex";
+    }}
+  />
+) : null}
+
+<div
+  className="poster-placeholder"
+  style={{ display: s.posterUrl ? "none" : "flex" }}
+>
+  <i className="ri-music-2-fill"></i>
+</div>
+
                   <div className="song-overlay">
-                    <i className={song?._id === s._id ? 'ri-pause-fill' : 'ri-play-fill'} />
+                    <i
+                      className={
+                        song?._id === s._id
+                          ? "ri-pause-fill"
+                          : "ri-play-fill"
+                      }
+                    />
                   </div>
+
                   <span className="playing-dot" />
+
                   <div className="playing-bars">
-                    <span /><span /><span /><span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
                   </div>
                 </div>
+
                 <div className="song-info">
                   <p className="song-title">{s.title}</p>
+
                   <span className={`song-mood mood-${s.mood}`}>
                     {s.mood}
                   </span>
@@ -66,7 +94,7 @@ const AllSongs = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default AllSongs
+export default AllSongs;  
