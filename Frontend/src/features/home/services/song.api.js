@@ -1,11 +1,10 @@
 import axios from 'axios';
 
-app.use(
-  cors({
-    origin: "https://i-moddify.vercel.app",
-    credentials: true,
-  })
-);
+
+const api = axios.create({
+    baseURL:"https://i-moddify.onrender.com/api",
+    withCredentials:true
+})
 
 
 export async function getSong({mood}){
