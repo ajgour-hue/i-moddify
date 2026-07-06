@@ -15,6 +15,11 @@ app.use(cors({
 }))
 
 
+// app.use(cors({
+//     origin:"https://localhost:3000",
+//     credentials:true
+// }))
+
 app.use('/api/auth',authRoutes);
 app.use('/api/songs',songRoutes);
 
