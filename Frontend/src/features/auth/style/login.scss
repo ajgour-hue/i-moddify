@@ -1,0 +1,119 @@
+:root {
+  // Premium Color Palette
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+  --accent-color: #6366f1; // Indigo 500
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --input-focus: rgba(99, 102, 241, 0.4);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  padding: 20px;
+
+  .form-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
+    padding: 50px 40px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.6s ease-out;
+
+    .header-section {
+      text-align: center;
+      margin-bottom: 40px;
+
+      h1 {
+        color: var(--text-primary);
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 8px;
+      }
+
+      p {
+        color: var(--text-secondary);
+        font-size: 15px;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        label {
+          font-size: 13px;
+          font-weight: 600;
+          color: var(--text-primary);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-left: 4px;
+        }
+
+        input {
+          padding: 14px 20px;
+          background: rgba(0, 0, 0, 0.2);
+          border: 1px solid var(--glass-border);
+          border-radius: 14px;
+          color: white;
+          font-size: 15px;
+          transition: var(--transition);
+
+          &::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+          }
+
+          &:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 0 4px var(--input-focus);
+          }
+        }
+      }
+
+      
+    }
+
+    .footer-text {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-secondary);
+
+      a {
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}

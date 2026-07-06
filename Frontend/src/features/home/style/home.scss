@@ -1,0 +1,218 @@
+// .home {
+//   display: flex;
+//   flex-direction: column;
+//   height: calc(100vh - var(--player-h));
+//   background: radial-gradient(circle at top left, #1e1b4b 0%, var(--bg-dark) 50%);
+//   width: 100%;
+//   overflow: hidden;
+//   position: relative;
+//   padding-top: var(--navbar-h);
+// }
+
+// .home-body {
+//   flex: 1;
+//   display: grid;
+//   grid-template-columns: 360px minmax(0, 1fr) 360px;
+//   gap: 24px;
+//   padding: 24px;
+//   box-sizing: border-box;
+//   overflow: hidden;
+//   height: 100%;
+//   min-height: 0; 
+
+//   @media (max-width: 1024px) {
+//     grid-template-columns: 280px minmax(0, 1fr) 280px;
+//   }
+
+//   @media (max-width: 768px) {
+//     grid-template-columns: 1fr;
+//     overflow-y: auto;
+//     height: auto;
+//   }
+// }
+
+
+
+// .home-panel-left,
+// .home-panel-right {
+//   height: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   overflow: hidden;
+// }
+
+// .home-panel-center {
+//   height: 100%;
+//   display: grid;
+//   grid-template-columns: 1fr;
+//   gap: 1rem;
+//   overflow-y: auto;
+//   padding-right: 8px;
+//   width: 100%;        
+//   min-width: 0;
+
+//   &::-webkit-scrollbar {
+//     width: 4px;
+//   }
+
+//   &::-webkit-scrollbar-thumb {
+//     background: rgba(255, 255, 255, 0.1);
+//     border-radius: 10px;
+//   }
+
+//   .center-section {
+//     max-width: 100%; 
+//     box-sizing: border-box;
+//     // overflow: hidden;
+//     width: 100%;
+//     background: var(--bg-panel);
+//     border: 1px solid var(--border);
+//     border-radius: 28px;
+//     padding: 10px;
+//     backdrop-filter: blur(24px);
+//     flex-shrink: 0;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }
+// }
+
+
+// .navbar-fixed-container {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   height: var(--navbar-h);
+//   z-index: 1000;
+//   background: rgba(11, 17, 32, 0.8);
+//   backdrop-filter: blur(16px);
+//   border-bottom: 1px solid var(--border);
+// }
+
+
+.home {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--player-h));
+  background: radial-gradient(circle at top left, #1e1b4b 0%, var(--bg-dark) 50%);
+  width: 100%;
+  overflow: hidden; // Desktop par main page nahi hilega
+  position: relative;
+  padding-top: var(--navbar-h);
+
+  // 📱 Mobile View: Poore page ko scrollable banayein
+  @media (max-width: 768px) {
+    height: auto;
+    min-height: calc(100vh - var(--player-h));
+    overflow-y: auto; 
+  }
+}
+
+.home-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr) 360px;
+  gap: 24px;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 100%;
+  min-height: 0;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 280px minmax(0, 1fr) 280px;
+  }
+
+  // 📱 Mobile View: Flexbox column banayein
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    overflow: visible; // Body overflow allow karein
+    height: auto;
+    gap: 16px;
+    padding: 16px;
+    padding-bottom: 24px;
+  }
+}
+
+.home-panel-left,
+.home-panel-right {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  // 📱 Mobile View: Gaano ki list ko fixed height dein taaki wo infinite na khichein
+  @media (max-width: 768px) {
+    height: 400px; 
+    border-radius: 28px;
+  }
+}
+
+.home-panel-center {
+  height: 100%;
+  display: flex; // Flex use karna better hai yahan
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto; // Desktop par scroll
+  padding-right: 8px;
+  width: 100%;        
+  min-width: 0;
+
+  // 📱 Mobile View: Nested scroll band karke height natural karein
+  @media (max-width: 768px) {
+    height: auto;
+    overflow-y: visible; // Scrollbar hatao
+    padding-right: 0;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+
+  .center-section {
+    max-width: 100%; 
+    box-sizing: border-box;
+    width: 100%;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 10px;
+    backdrop-filter: blur(24px);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 768px) {
+      padding: 16px; // Mobile par better padding
+      border-radius: 20px;
+    }
+  }
+}
+
+// 📱 SMART MOBILE ORDERING 📱
+// User ko mobile par jo cheez pehle dekhni chahiye, usko upar shift kiya
+@media (max-width: 768px) {
+  .home-panel-center { order: 1; } // AI Scanner & Mood Selector (Sabse Upar)
+  .home-panel-right  { order: 2; } // Mood Recommendations (Beech mein)
+  .home-panel-left   { order: 3; } // All Songs (Sabse Niche)
+}
+
+.navbar-fixed-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-h);
+  z-index: 1000;
+  background: rgba(11, 17, 32, 0.8);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}

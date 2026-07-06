@@ -1,0 +1,92 @@
+.upload-notification {
+    position: fixed;
+    bottom: 110px; // Above the player (90px height) + some margin
+    right: 24px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+    padding: 12px 20px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    min-width: 280px;
+    transition: all 0.3s ease;
+    animation: slideIn 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    overflow: hidden;
+
+    .notification-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        .message {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        i {
+            font-size: 1.4rem;
+        }
+
+        .ri-checkbox-circle-fill { color: #4ade80; }
+        .ri-error-warning-fill { color: #f87171; }
+    }
+
+    &.uploading {
+        border-color: rgba(99, 102, 241, 0.5);
+    }
+
+    &.success {
+        border-color: rgba(74, 222, 128, 0.4);
+    }
+
+    &.error {
+        border-color: rgba(248, 113, 113, 0.4);
+    }
+
+    .notification-spinner {
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255, 255, 255, 0.1);
+        border-top-color: var(--accent);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+    }
+
+    .progress-bar-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.05);
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 30%; // Indeterminate animation
+            animation: indeterminateProgress 1.5s ease-in-out infinite;
+        }
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(120%) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes indeterminateProgress {
+    0% { left: -30%; }
+    100% { left: 100%; }
+}
