@@ -56,7 +56,7 @@ const Register = () => {
           
           <div className="footer-text">
             Already have an account?
-            <Link to="/login">Sign in</Link>
+            <Link to="/login">SignIn</Link>
           </div>
         </form>
       </div>
