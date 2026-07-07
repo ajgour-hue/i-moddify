@@ -1,6 +1,6 @@
 ## 1. What is this repo?
 
-The **i-moddify** repository is a full-stack web application designed to provide a mood-aware music streaming experience. At its core, the project leverages computer vision and metadata-driven music organization to serve users songs that align with their emotional state.
+The **moddify** repository is a full-stack web application designed to provide a mood-aware music streaming experience. At its core, the project leverages computer vision and metadata-driven music organization to serve users songs that align with their emotional state.
 
 The application is divided into two primary environments:
 1.  **Backend**: A Node.js and Express-based REST API that handles user authentication, music file metadata extraction, and storage integration. It utilizes MongoDB for data persistence and Redis for caching (as evidenced by `Backend/src/config/cache.js`).
